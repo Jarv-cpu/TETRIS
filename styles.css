@@ -1,0 +1,26 @@
+html {
+    box-sizing: border-box;
+    background-color: #0C0C0C;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    height: 98vh;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#screen {
+    border: 1px solid gray;
+    background-color: #0B1215;
+}
+
+#controls{
+    color: white;
+    font-size: 3vh;
+    text-align: center;
+}
