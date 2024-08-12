@@ -607,6 +607,10 @@ const piezas = [
         }
     },
 ]
+const audioPoint = new Audio("./point.mp3")
+const audioDrop = new Audio("drop.mp3")
+const audioRotate = new Audio("rotate.mp3")
+const audioLose = new Audio("/gameOver.mp3")
 let pause = false
 let lose = false
 let seEstaPresionando = false
@@ -635,6 +639,8 @@ function game() {
         requestAnimationFrame(game)
     }
 }
+
+
 function move() {
 
     moveDown = Math.floor(fps / 60)
@@ -652,11 +658,14 @@ function move() {
                 formaActual = 1
                 sePuedeCambiar = true
             }
+            audioDrop.play()
         }
     }
     lastMoveDown = moveDown
 
 }
+
+
 function fillBag() {
     while (bag.length < piezas.length) {
         let dado = Math.floor(Math.random() * piezas.length)
@@ -665,6 +674,8 @@ function fillBag() {
         }
     }
 }
+
+
 function reset() {
     for (let i = 0; i < 22; i++) {
         tablero[i] = []
@@ -681,16 +692,16 @@ function reset() {
     }
 
     bag = []
-    elejirPieza()
-    down()
     score = 0
     formaActual = 1
     sePuedeCambiar = true
     lose = false
     nextText.innerHTML = "NEXT"
     siguientePiezaCanvas.classList.remove("hidden")
-    requestAnimationFrame(game)
+    elejirPieza()
 }
+
+
 function elejirPieza() {
     if (bag.length < 1) {
         fillBag()
@@ -713,11 +724,13 @@ function elejirPieza() {
     siguientePieza[1].draw(2, 2, siguientePiezaTablero)
     console.table(siguientePiezaTablero)
 }
+
+
 function youLose() {
+    audioLose.play()
     nextText.innerHTML = `YOU LOSE <br> PREESS "R" <br> TO <br> RESTART`
     siguientePiezaCanvas.classList.add("hidden")
     lose = true
-
 }
 
 
@@ -750,6 +763,8 @@ function verLineas() {
     }
 
 }
+
+
 function bajarLineas(Y) {
     for (let i = Y; i > 0; i--) {
         for (let j = 0; j < 10; j++) {
@@ -760,6 +775,8 @@ function bajarLineas(Y) {
         }
     }
 }
+
+
 function dibujarTablero() {
     let px = canvas.width / 10
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -791,7 +808,10 @@ function dibujarTablero() {
     }
 
 }
+
+
 function aumentarScore(points) {
+    audioPoint.play()
     if (points == 1) {
         score += 100
     }
@@ -819,9 +839,12 @@ function cambiarForma() {
 
     pieza[formaActual].draw(pieza.y, pieza.x, tablero)
 }
+
+
 function wallKick(siguienteForma) {
     if (pieza[siguienteForma].check(pieza.y, pieza.x)) {
         formaActual = siguienteForma
+        audioRotate.play()
     } else if (pieza[siguienteForma].check(pieza.y, pieza.x + 1)) {
         pieza.x++
         formaActual = siguienteForma
@@ -835,6 +858,7 @@ function wallKick(siguienteForma) {
     } else if (pieza[siguienteForma].check(pieza.y, pieza.x - 2)) {
         pieza.x -= 2
         formaActual = siguienteForma
+        audioRotate.play()
     }
 
 
@@ -852,6 +876,8 @@ function cambiarPieza() {
     pieza[formaActual].draw(pieza.y, pieza.x, tablero)
     siguientePieza[1].draw(2, 2, siguientePiezaTablero)
 }
+
+
 function moveRight() {
     pieza[formaActual].erase(pieza.y, pieza.x, tablero)
     if (pieza[formaActual].check(pieza.y, pieza.x + 1)) {
@@ -859,6 +885,8 @@ function moveRight() {
     }
     pieza[formaActual].draw(pieza.y, pieza.x, tablero)
 }
+
+
 function moveLeft() {
     pieza[formaActual].erase(pieza.y, pieza.x, tablero)
     if (pieza[formaActual].check(pieza.y, pieza.x - 1)) {
@@ -866,6 +894,8 @@ function moveLeft() {
     }
     pieza[formaActual].draw(pieza.y, pieza.x, tablero)
 }
+
+
 function down() {
     pieza[formaActual].erase(pieza.y, pieza.x, tablero)
     if (pieza.y < pieza[formaActual].maximaY) {
@@ -877,6 +907,8 @@ function down() {
     }
     pieza[formaActual].draw(pieza.y, pieza.x, tablero)
 }
+
+
 function superDown() {
     let hasta = pieza[formaActual].maximaY + 1
     for (let i = pieza.y; i < hasta; i++) {
