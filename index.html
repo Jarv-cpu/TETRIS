@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Pixeled.ttf">
 </head>
+
 <body>
-    <div><canvas id="screen"></canvas></div>
-    <div id="controls">
-        <p>
-            CONTROLS <br>
-            A,D : MOVE | W: ROTATE | S: DOWN | SPACE: CHANGE
-        </p>
+    <div id="tetris">
+        <canvas id="screen"></canvas>
+        <div id="informacion">
+            <div id="next">
+                <p id="nextText">NEXT</p>
+                <canvas id="siguientaPiezaCanvas"></canvas>
+            </div>
+            <div id="scoreDiv">
+                <p id="score">SCORE: <br> 0</p>
+            </div>
+            <div id="controls">
+                <p>
+                    <span>CONTROLS</span>
+                    <span>A,D: MOVE</span>
+                    <span>W: ROTATE</span>
+                    <span>S: DOWN</span>
+                    <span>SPACE: <br>SUPER DOWN</span>
+                    <span>SHIFT: CHANGE</span>
+                    <span>P: PAUSE</span>
+                    <span>R: RESTART</span>
+                </p>
+            </div>
+        </div>
     </div>
 </body>
-<script src="script.js" type="module"></script>
+<script src="index.js"></script>
+
 </html>

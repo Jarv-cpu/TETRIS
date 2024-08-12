@@ -1,7 +1,19 @@
+* {
+    margin: 0px;
+}
+
+@font-face{
+    font-family: "Pixeled";
+    src:url(Pixeled.ttf);
+}
+
 html {
     box-sizing: border-box;
     background-color: #0C0C0C;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Pixeled";
+    color: white;
+    font-size: 1.6vh;
+    text-align: center;
 }
 
 body {
@@ -14,13 +26,44 @@ body {
 
 }
 
+span{
+    border-top: 1px solid white;
+}
+
+span:first-of-type{
+    border-top: none;
+}
+
+#next,
+#scoreDiv,
+#controls {
+    background-color: black;
+    border: 1px solid aliceblue;
+}
+
+.hidden{
+    display: none;
+}
+
+#scoreDiv{
+    border-top: none;
+    border-bottom: none;
+}
+
+#tetris {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vh;
+    background-color: #1c2e4a;
+    border: 2px solid black;
+}
+
 #screen {
     border: 1px solid gray;
     background-color: #0B1215;
+    margin-right: 0.5vh;
 }
 
-#controls{
-    color: white;
-    font-size: 3vh;
-    text-align: center;
+span {
+    display: block;
 }
