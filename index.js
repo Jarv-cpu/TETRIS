@@ -946,6 +946,7 @@ body.addEventListener("keydown", (e) => {
         }
         if (e.key == "r") {
             reset()
+            requestAnimationFrame(game)
         }
         if (e.key == "Shift" && sePuedeCambiar) {
             cambiarPieza()
